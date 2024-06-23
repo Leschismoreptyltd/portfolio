@@ -5,6 +5,8 @@ module.exports = withMT({
   theme: {
     colors:{
       "navbarBg": "#FBFAF8",
+      "clockBg": "#f7f7f7",
+      "clockTextColor": "#de4848"
     },
     screens: {
       
@@ -20,7 +22,8 @@ module.exports = withMT({
         alfaSlabOne: ["Alfa Slab One", "sans-serif"],
         dancingScript: ["Dancing Script", "sans-serif"],
         reenieBeanie: ["Reenie Beanie", "sans-serif"],
-        mrsSaintDelafield: ["Mrs Saint Delafield", "sans-serif"]
+        mrsSaintDelafield: ["Mrs Saint Delafield", "sans-serif"],
+        specialElite:["Special Elite", "sans-serif"]
         // Add more custom font families as needed
       }
     },

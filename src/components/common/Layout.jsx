@@ -7,7 +7,7 @@ const Layout = () => {
 
     return(
         <>
-        <div className="max-w-full bg-transparent">
+        <div className="max-w-full">
             <Header/>
             <main>
                 <Suspense fallback= {<div>Loading...</div>}>

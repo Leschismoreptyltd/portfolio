@@ -1,3 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @layer components{
+    .flip-unit{
+        @apply relative w-10 h-16;
+    }
+    .flip-top{
+        @apply block w-full h-full bg-clockBg text-white text-center text-3xl border absolute inset-0 origin-bottom rotate-0 ease-in;
+    }
+    .flip-bottom{
+        @apply block w-full h-full bg-clockBg text-white text-center text-3xl border absolute bottom-0 left-0 origin-top ease-in;
+    }
+} */
+ /*
+.flip-clock {
+    display: flex;
+    gap: 0.5rem;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .flip-unit {
+    position: relative;
+    width: 2.5rem;
+    height: 4rem;
+    perspective: 600px;
+  }
+  
+  .flip-card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  
+  .flip-card-front,
+  .flip-card-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    background: #333;
+    color: white;
+    border-radius: 0.25rem;
+  }
+  
+  .flip-card-front {
+    transform: rotateX(0deg);
+  }
+  
+  .flip-card-back {
+    transform: rotateX(180deg);
+  }
+  
+  .flipped .flip-card-front {
+    transform: rotateX(-180deg);
+  }
+  
+  .flipped .flip-card-back {
+    transform: rotateX(0deg);
+  }*/
+
+
+  /* This is the styling for the FlipClock.jsx */
+
+ 

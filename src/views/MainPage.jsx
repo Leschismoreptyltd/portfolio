@@ -2,11 +2,12 @@ import QuoteGen from "../components/cards/QuoteGen";
 import DateTime from "../components/cards/DateTime";
 import AboutMe from "../components/cards/AboutMe";
 import bgImage from "../assets/Background/bg-earth-stone.jpg"
+import FlipClock from "../components/cards/FlipClock";
 const MainPage = () => {
 
     return(
         <>
-        <div className="absolute w-full bg-inherit">
+        <div className="absolute w-full">
 
             {/*Background I changed this*/}
             <div className="w-full absolute">
@@ -25,8 +26,8 @@ const MainPage = () => {
                     <QuoteGen/>
                 </div>
 
-                <div className="flex w-1/3 bg-navbarBg opacity-4">
-                    <DateTime/>
+                <div className="flex w-1/3">
+                    <FlipClock/>
                 </div>
 
                 {/*About Me */}

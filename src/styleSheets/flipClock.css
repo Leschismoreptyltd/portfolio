@@ -1,0 +1,44 @@
+.flip-clock-card{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    box-shadow: 3px 6px 10px 0 rgba(0,0,0,0.25);
+    border-radius: 0.1em;
+    color: theme("colors.clockTextColor");
+}
+.top, .bottom{
+    height: 0.75em;
+    line-height: 1;
+    padding: 0.25em;
+    overflow: hidden;
+  }
+  
+  .top{
+    background-color: theme("colors.clockBg");
+    border-top-left-radius: 0.1em;
+    border-top-right-radius: 0.1em;
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    /* border: 1px black solid; */
+  }
+  .bottom {
+    background-color: white;
+    display: flex;
+    align-items: flex-end;
+    border-bottom-left-radius: 0.1em;
+    border-bottom-right-radius: 0.1em;    
+  }
+
+  .flip-clock-card::before{
+    position: absolute;
+    content: "5";
+    overflow: hidden;
+    /* background-color: red; */
+    width: 100%;
+    text-align: center;
+    padding-top: 0.25em;
+    line-height: 1;
+  }
+
+  .flip-clock-card::after{
+
+  }
