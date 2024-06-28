@@ -2,8 +2,8 @@ import {useState, useEffect} from "react";
 import FlipUnit from "../../API/clockFlipUnit.jsx";
 const DateTime =() => {
  
-      const [time, setTime] = useState(new Date());
-      const [previousTime, setPreviousTime] = useState(new Date());
+        const [time, setTime] = useState(new Date());
+        const [previousTime, setPreviousTime] = useState(new Date());
     
       useEffect(() => {
         const interval = setInterval(() => {

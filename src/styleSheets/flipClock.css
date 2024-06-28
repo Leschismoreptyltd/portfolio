@@ -1,44 +1,111 @@
-.flip-clock-card{
-    position: relative;
-    display: inline-flex;
-    flex-direction: column;
-    box-shadow: 3px 6px 10px 0 rgba(0,0,0,0.25);
-    border-radius: 0.1em;
-    color: theme("colors.clockTextColor");
+.flip-clock-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
 }
-.top, .bottom{
-    height: 0.75em;
-    line-height: 1;
-    padding: 0.25em;
-    overflow: hidden;
-  }
-  
-  .top{
-    background-color: theme("colors.clockBg");
-    border-top-left-radius: 0.1em;
-    border-top-right-radius: 0.1em;
-    border-bottom: 1px solid rgba(0,0,0,0.25);
-    /* border: 1px black solid; */
-  }
-  .bottom {
-    background-color: white;
-    display: flex;
-    align-items: flex-end;
-    border-bottom-left-radius: 0.1em;
-    border-bottom-right-radius: 0.1em;    
-  }
 
-  .flip-clock-card::before{
-    position: absolute;
-    content: "5";
-    overflow: hidden;
-    /* background-color: red; */
-    width: 100%;
-    text-align: center;
-    padding-top: 0.25em;
-    line-height: 1;
-  }
+.clock {
+  position: relative;
+}
 
-  .flip-clock-card::after{
+.card{
+  position: relative;
+  display: inline-block;
+  height: 110px;
+  width: 90px;
+  perspective: 500px;
+  border-radius: 7px 7px 7px 7px;
+  box-shadow: 3px 3px 10px #888;
+  margin-right: 2px;
 
+}
+
+.card:nth-last-of-type(even){
+  margin-right: 14px;
+}
+
+.card:nth-of-type(6){
+  margin-right: 0px;
+}
+
+.panel{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: #fff;
+  color: "clock-color";
+  font-size: 110px;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  overflow: hidden;
+} 
+@-moz-document url-prefix(){
+  .panel{
+    line-height: 1.1;
   }
+}
+
+.panel-btm{
+  top: 50%;
+  transform-origin: top;
+  border-radius: 0 0 7px 7px;
+}
+
+.panel-top{
+  transform-origin: bottom;
+  border-radius: 7px 7px 0 0;
+}
+
+.panel-in{
+  transform: rotateX(180deg);
+  z-index: 2;
+}
+.panel-in--shadow{
+  background-color: #ccc;
+}
+
+.number{
+  display: block;
+}
+
+.number--btm{
+  margin-top: -55px;
+}
+
+/*===================
+        JS Style
+  ===================*/
+
+.js-transition-card .panel-in,
+.js-transition-card .panel-out,
+.js-transition-card .panel-out--shadow {
+  transition: 0.6s cubic-bezier(0.67, 0.17, 0.8, 0.94);
+}
+
+.js-transition-card .panel-in{
+  transform: rotateX(0deg);
+}
+
+.js-transition-card .panel-out{
+  transform: rotateX(-180deg);
+  background-color: #666;
+}
+.js-transition-card .panel-in--shadow{
+  transition: 0.6s ease-in;
+  background-color: #fff;
+}
+
+.js-transition-card .panel-out--shadow{
+  background-color: #ccc;
+}
+.turn-black{
+  background-color: red;
+}

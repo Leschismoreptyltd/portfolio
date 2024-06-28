@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import "../styleSheets/flipClock.css"
 
 const FlipUnit = ({ current, previous }) => {
   const [flipped, setFlipped] = useState(false);
+
+  const flipCard = document.querySelector(".flip-clock-container")
 
   useEffect(() => {
     if (current !== previous) {
@@ -11,12 +14,36 @@ const FlipUnit = ({ current, previous }) => {
     }
   }, [current, previous]);
 
+  const topAnimationStart =() => {
+    console.log(flipCard);
+    const topFlip = flipCard.querySelector(".top-flip")
+    console.log(topFlip);
+    //topFlip.textContent = 0
+  }
+
+  const topAnimationEnd =() => {
+    const topFlip = flipCard.querySelector(".top-flip")
+    topFlip.remove;
+
+  }
+
+  const bottomAnimationEnd =() => {
+    const bottomFlip = flipCard.querySelector(".bottom-flip")
+    //bottomFlip.textContent = 0
+    bottomFlip.remove
+  }
+
   return (
-    <div className="flip-unit">
-      <div className={`flip-card ${flipped ? 'flipped' : ''}`}>
-        <div className="flip-card-front">{previous}</div>
-        <div className="flip-card-back">{current}</div>
-      </div>
+    <div className="flip-clock-card">
+        <div className="top">{current}</div>
+        <div className="bottom">{current}</div>
+        {flipped ?(
+                <> 
+                    <div className="top-flip" >{current}</div> 
+                    <div className="bottom-flip">{current}</div> 
+                </>) 
+                :(<div></div>) }
+      
     </div>
   );
 };

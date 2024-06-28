@@ -35,6 +35,10 @@ module.exports = withMT({
       wide: '.025em',
       wider: '.05em',
       widest: '.15em',
+    },
+    backgroundImage:
+    {
+      "custom-bg": "url('/src/assets/Background/bg-earth-stone.jpg')"
     }
   },
   plugins: [],
