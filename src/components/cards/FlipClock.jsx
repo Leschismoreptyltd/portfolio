@@ -1,6 +1,7 @@
 import "../../styleSheets/flipClock.css";
 import { useEffect, useState, useRef } from "react";
-import FlipUnit from "../../API/clockFlipUnit";
+import FlipClockSecondLast from "../fragments/FlipClockSecondLast";
+import FlipClockFragment from "../fragments/FlipClockFragment";
 
 const FlipClock = (props) =>{
 
@@ -8,13 +9,10 @@ const FlipClock = (props) =>{
         Filp Mechanics
   ==========================*/ 
 
-    const [flipped, setFlipped] = useState(false);
-    const [count, setCount] = useState(0);
+  
+    const [flipStates, setFlipStates]  = useState([false, false, false, false, false, false])
     const [time, setTime] = useState(new Date());
     const [previousTime, setPreviousTime] = useState(new Date());
-    const[hour, setHour] = useState([])
-    const [minute, setMinute] = useState([]);
-    const [second, setSecond] = useState([]);
   
 
       const formatTime = (time) => {
@@ -27,171 +25,153 @@ const FlipClock = (props) =>{
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-
-      updateTime(new Date());
-      setTime(new Date());
-      setFlipped(prevFlipped => !prevFlipped);
+      const newTime = new Date();
+      setPreviousTime(time);
+      setTime(newTime);
+      updateFlippedStates(time);
+      
+      //setFlipped(prev => !prev);
       test
       
 
     }, 1000);
+    const timer = setTimeout(() =>{
+      updateFlippedStates(time)
+    },400)
 
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
-  }, []);
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timer); 
+    } // Cleanup interval on component unmount
+  }, [time]);  
 
-  const updateTime = (time) => {
+  const updateFlippedStates= (time) => {
     const [hours, minutes, seconds] = formatTime(time)
     
-    //updating hour-first card
+    //updating hour-first card flipped state
     if(hours[1] + minutes + seconds == 0) {
-
+      
       console.log("Update hourFirst");
+      setFlipStates(prev => {
+        const newFlipStates = [...prev]
+        newFlipStates[0] = !newFlipStates[0];
+        return newFlipStates;    
+      })
     }
-    //updating hour-last card
+
+    //updating hour-last card flipped state
     if (minutes + seconds == 0) {
 
       console.log("Update hourLast");
+      setFlipStates(prev => {
+        const newFlipStates = [...prev]
+        newFlipStates[1] = !newFlipStates[1];
+        return newFlipStates;    
+      })
+      
     }
-    //updating minute-first card
+
+    //updating minute-first card flipped state
     if(minutes[1] + seconds == 0) {
       
       console.log("Updating minuteFirst");
+      setFlipStates(prev => {
+        const newFlipStates = [...prev]
+        newFlipStates[2] = !newFlipStates[2]
+        return newFlipStates;    
+      })
+            
     }
-    //updating minute-last card
+
+    //updating minute-last card flipped state
     if(seconds == 0){
-
+      
       console.log("Updating minuteLast");
+      setFlipStates(prev => {
+        const newFlipStates = [...prev]
+        newFlipStates[3] = !newFlipStates[3]
+        return newFlipStates;    
+      })
+      
     }
-    //Updating second-first card
-    if(seconds[1] == 0){
 
+    //updating second-first card flipped state
+    if(seconds[1] < 1){
+      
       console.log("Updating secondFirst");
+      setFlipStates(prev => {
+        const newFlipStates = [...prev]
+        newFlipStates[4] = !newFlipStates[4]
+        return newFlipStates;    
+      })
     }
-    
-    //Updating second-last card
-    console.log("updating secondLast");
-    console.log(hours, minutes, seconds);
+    //updating second-last card flipped state
+    setFlipStates(prev => {
+      const newFlipStates = [...prev]
+      newFlipStates[5] = !newFlipStates[5]
+      return newFlipStates;    
+    })
   }
 
-    /* const updateNumber = () => {
-      
-    }  */
 
-      //const currentFormattedTime = formatTime(time);
-      //const previousFormattedTime = formatTime(previousTime);
-
-      const test = () => {
-        console.log("I was trying to access the elements from here. Look into useRef for accessing more than one element. ");
-        console.log(flipped)
-      }
+  const test = () => {
+    //const [hours, minutes, seconds] = formatTime(time)
+      //console.log("Hours: ", hours, "Minutes: ", minutes, "Seconds: ", seconds);
+      console.log("State Hours: ", formatTime(time)[0], "State Minutes: ", formatTime(time)[1], "State Seconds: ", formatTime(previousTime)[2], formatTime(time)[2]);
+      console.log("Previous State Hours: ", formatTime(previousTime)[0], "Previous State Minutes: ", formatTime(previousTime)[1], "Previous State Seconds: ", formatTime(previousTime)[2])
+      console.log(flipStates)
+  }
       
    
     return(
         <>
         <div className="flip-clock-container w-full border-4 border-slate-400 p-4">
-        <button className={`pr-5 border-2 border-black ${flipped? "turn-black" : " "}`} onClick={test}>Test</button>
+        {/* <button className={`pr-5 border-2 border-black ${flipped? "turn-black" : " "}`} onClick={test}>Test</button> */}
 
-          <div className="clock">
+          <div className="clock align-middle ">
 
-            <div className={`card js-hour-first `}>
-              <div className="panel panel-top panel-in--shadow">
-                {/*Set in the update number after time has been updated */}
-                <span className="number">{formatTime(time)[0][0]}</span>
-              </div>
-              <div className="panel panel-btm panel-in">
-                {/*Set in the update number after time has been updated */}
-                <span className="number number--btm">{formatTime(time)[0][0]}</span>
-              </div>
-              <div className="panel panel-top panel-out">
-                {/*Set in the initial time value */}
-                <span className="number">{formatTime(time)[0][0]}</span>
-              </div>
-              <div className="panel panel-btm panel-out--shadow">
-                {/*Set in the initial time value */}
-                <span className="number number--btm">{formatTime(time)[0][0]}</span>
-              </div>
-            </div>
+            <FlipClockFragment
+            cardName ="hour-first"
+            flipped = {flipStates[0]}
+            currentNumberInput = {formatTime(time)[0][0]}
+            previousNumberInput = {formatTime(previousTime)[0][0]}
+            />
+            <FlipClockFragment
+            cardName = "hour-last"
+            flipped = {flipStates[1]}
+            currentNumberInput = {formatTime(time)[0][1]}
+            previousNumberInput = {formatTime(previousTime)[0][1]}
+            />
 
-            <div className="card js-hour-last">
-              <div className="panel panel-top panel-in--shadow">
-                <span className="number">{formatTime(time)[0][1]}</span>
-              </div>
-              <div className="panel panel-btm panel-in">
-                <span className="number number--btm">{formatTime(time)[0][1]}</span>
-              </div>
-              <div className="panel panel-top panel-out">
-                <span className="number">{formatTime(time)[0][1]}</span>
-              </div>
-              <div className="panel panel-btm panel-out--shadow">
-                <span className="number number--btm">{formatTime(time)[0][1]}</span>
-              </div>
-            </div>
+            <p className="text-6xl ">:</p>
 
-            <p>Hours</p>
+            <FlipClockFragment
+            cardName = "minute-first"
+            flipped = {flipStates[2]}
+            currentNumberInput = {formatTime(time)[1][0]}
+            previousNumberInput = {formatTime(previousTime)[1][0]}
+            />
+            <FlipClockFragment
+            cardName = "minute-last"
+            flipped = {flipStates[3]}
+            currentNumberInput = {formatTime(time)[1][1]}
+            previousNumberInput = {formatTime(previousTime)[1][1]}
+            />
 
-            <div className="card js-minute-first">
-              <div className="panel panel-top panel-in--shadow">
-                <span className="number">{formatTime(time)[1][0]}</span>
-              </div>
-              <div className="panel panel-btm panel-in">
-                <span className="number number--btm">{formatTime(time)[1][0]}</span>
-              </div>
-              <div className="panel panel-top panel-out">
-                <span className="number">{formatTime(time)[1][0]}</span>
-              </div>
-              <div className="panel panel-btm panel-out--shadow">
-                <span className="number number--btm">{formatTime(time)[1][0]}</span>
-              </div>
-            </div>
+            <p className="text-6xl text-center">:</p>
 
-            <div className="card js-minute-last">
-              <div className="panel panel-top panel-in--shadow">
-                <span className="number">{formatTime(time)[1][1]}</span>
-              </div>
-              <div className="panel panel-btm panel-in">
-                <span className="number number--btm">{formatTime(time)[1][1]}</span>
-              </div>
-              <div className="panel panel-top panel-out">
-                <span className="number">{formatTime(time)[1][1]}</span>
-              </div>
-              <div className="panel panel-btm panel-out--shadow">
-                <span className="number number--btm">{formatTime(time)[1][1]}</span>
-              </div>
-            </div>
-
-            <p>Minutes</p>
-
-            <div className={`card js-second-first ${flipped? "js-transition-card" : " "}`}>
-              <div className="panel panel-top panel-in--shadow">
-                <span className="number">{formatTime(time)[2][0]}</span>
-              </div>
-              <div className="panel panel-btm panel-in">
-                <span className="number number--btm">{formatTime(time)[2][0]}</span>
-              </div>
-              <div className="panel panel-top panel-out">
-                <span className="number">{formatTime(time)[2][0]}</span>
-              </div>
-              <div className="panel panel-btm panel-out--shadow">
-                <span className="number number--btm">{formatTime(time)[2][0]}</span>
-              </div>
-            </div>
-
-            <div className={`card js-second-last ${flipped? "js-transition-card" : " "}`}>
-              <div className="panel panel-top panel-in--shadow">
-                <span className="number">{formatTime(time)[2][1]}</span>
-              </div>
-              <div className="panel panel-btm panel-in">
-                <span className="number number--btm">{formatTime(time)[2][1]}</span>
-              </div>
-              <div className="panel panel-top panel-out">
-                <span className="number">{formatTime(time)[2][1]}</span>
-              </div>
-              <div className="panel panel-btm panel-out--shadow">
-                <span className="number number--btm">{formatTime(time)[2][1]}</span>
-              </div>
-            </div>
-
-            <p>Seconds</p>
+            <FlipClockFragment
+            cardName= "second-first"
+            flipped = {flipStates[4]}
+            currentNumberInput = {formatTime(time)[2][0]}
+            previousNumberInput = {formatTime(previousTime)[2][0]}
+            />
+            <FlipClockFragment
+            cardName = "second-last" 
+            flipped = {flipStates[5]} 
+            currentNumberInput = {formatTime(time)[2][1]}
+            previousNumberInput = {formatTime(previousTime)[2][1]}
+            />
 
           </div>
         </div>

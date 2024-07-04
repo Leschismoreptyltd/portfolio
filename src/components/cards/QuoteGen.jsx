@@ -39,9 +39,9 @@ const QuoteGen = () =>{
     
 
     return(
-        <div className="flex flex-col gap-1 m-3 w-full border-4 border-slate-400 p-4">
+        <div className="flex flex-col gap-1 m-3 w-full border-4 border-gray-300 p-4 rounded-xl">
             <Typography className="text-lg">{loading ? "Loading...": `" ${quote} "`}</Typography>
-            <Typography className="italic text-end text-xs"> - {author}</Typography>
+            <Typography className="italic text-end text-xs pr-4"> - {author}</Typography>
             <Button 
             ripple={true} 
             className="w-2/12 rounded-lg p-2 items-end ml-5" 

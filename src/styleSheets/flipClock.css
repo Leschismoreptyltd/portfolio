@@ -3,27 +3,29 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #eee;
 }
 
 .clock {
+  display: flex;
   position: relative;
+  flex-direction: row;
 }
 
 .card{
   position: relative;
   display: inline-block;
-  height: 110px;
-  width: 90px;
+  height: 50px;
+  width: 40px;
   perspective: 500px;
   border-radius: 7px 7px 7px 7px;
   box-shadow: 3px 3px 10px #888;
   margin-right: 2px;
+  
 
 }
 
 .card:nth-last-of-type(even){
-  margin-right: 14px;
+  margin-right: 5px;
 }
 
 .card:nth-of-type(6){
@@ -38,7 +40,7 @@
   height: 50%;
   background-color: #fff;
   color: "clock-color";
-  font-size: 110px;
+  font-size: 50px;
   font-weight: 900;
   text-align: center;
   line-height: 1;
@@ -77,7 +79,7 @@
 }
 
 .number--btm{
-  margin-top: -55px;
+  margin-top: -25px;
 }
 
 /*===================
@@ -108,4 +110,9 @@
 }
 .turn-black{
   background-color: red;
+}
+
+.delimiter{
+  font-size: 35px;
+  line-height: 1;
 }

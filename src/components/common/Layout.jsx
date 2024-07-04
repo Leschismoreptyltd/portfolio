@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
-import bgImage from "../../assets/Background/bg-earth-stone.jpg"
 
 const Layout = () => {
 
