@@ -8,43 +8,41 @@ const FlipClock = (props) =>{
   /*=========================
         Filp Mechanics
   ==========================*/ 
+  //State Variables
 
+  const [flipStates, setFlipStates]  = useState([false, false, false, false, false, false])
+  const [time, setTime] = useState(new Date());
+  const [previousTime, setPreviousTime] = useState(new Date());
   
-    const [flipStates, setFlipStates]  = useState([false, false, false, false, false, false])
-    const [time, setTime] = useState(new Date());
-    const [previousTime, setPreviousTime] = useState(new Date());
-  
-
-      const formatTime = (time) => {
-        const hours = String(time.getHours()).padStart(2, '0');
-        const minutes = String(time.getMinutes()).padStart(2, '0');
-        const seconds = String(time.getSeconds()).padStart(2, '0');
-        return [hours, minutes, seconds];
-      };
+  //Time formating
+  const formatTime = (time) => {
+    const hours = String(time.getHours()).padStart(2, '0');
+    const minutes = String(time.getMinutes()).padStart(2, '0');
+    const seconds = String(time.getSeconds()).padStart(2, '0');
+    return [hours, minutes, seconds];
+  };
       
-
+  //Run clock update
   useEffect(() => {
+
     const intervalId = setInterval(() => {
       const newTime = new Date();
       setPreviousTime(time);
       setTime(newTime);
-      updateFlippedStates(time);
-      
-      //setFlipped(prev => !prev);
-      test
-      
-
+      updateFlippedStates(time);  
     }, 1000);
+
     const timer = setTimeout(() =>{
       updateFlippedStates(time)
-    },400)
+    }, 400)
 
     return () => {
       clearInterval(intervalId);
       clearTimeout(timer); 
     } // Cleanup interval on component unmount
-  }, [time]);  
-
+  }, [time]); 
+   
+  //update flip states
   const updateFlippedStates= (time) => {
     const [hours, minutes, seconds] = formatTime(time)
     
@@ -125,7 +123,7 @@ const FlipClock = (props) =>{
    
     return(
         <>
-        <div className="flip-clock-container w-full border-4 border-slate-400 p-4">
+        <div className="">
         {/* <button className={`pr-5 border-2 border-black ${flipped? "turn-black" : " "}`} onClick={test}>Test</button> */}
 
           <div className="clock align-middle ">

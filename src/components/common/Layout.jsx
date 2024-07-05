@@ -13,22 +13,20 @@ const Layout = () => {
             <main >
             
                 <Suspense fallback= {<div>Loading...</div>}>
-                <Outlet/>
+
+                    <Outlet/>
+                
                 </Suspense>
+
             </main>
-            <Footer/>
+            
+            <div className="bg-navbarBg border-4 border-gray-300 p-4">
+                <Footer/>
+
+            </div>
         </div>
         </>
     )
 }
 
 export default Layout;
-
-    /*  {/*Background I changed this
-     <div className="w-full absolute -z-1">
-     {/*Background Image 
-         <img 
-         src={bgImage}
-         className="opacity-15 -z-1"  
-         alt="" />
-     </div> */
