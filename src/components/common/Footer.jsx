@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="flex w-full flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 md:justify-between">
       <Typography color="blue-gray" className="font-normal">
-        &copy; 2023 Material Tailwind
+        &copy; 2023 LeschisMore Pty Ltd
       </Typography>
       <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
         <li>
@@ -14,10 +14,10 @@ const Footer = () => {
             color="blue-gray"
             className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
           >
-            About Us
+            About
           </Typography>
         </li>
-        <li>
+        {/* <li>
           <Typography
             as="a"
             href="#"
@@ -26,7 +26,7 @@ const Footer = () => {
           >
             License
           </Typography>
-        </li>
+        </li> */}
         <li>
           <Typography
             as="a"
@@ -44,7 +44,7 @@ const Footer = () => {
             color="blue-gray"
             className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
           >
-            Contact Us
+            Contact
           </Typography>
         </li>
       </ul>

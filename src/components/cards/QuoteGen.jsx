@@ -8,7 +8,6 @@ const QuoteGen = () =>{
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const quoteApiKey = "iauvk08jdNGjMAbliuVITw==cRsDTQTgA33nITg4";
-    var category = "happiness";
     const url = "https://api.api-ninjas.com/v1/quotes"
 
     const getQuote = (controller) => {
@@ -40,11 +39,11 @@ const QuoteGen = () =>{
 
     return(
         <div className="flex flex-col gap-1 m-3 w-full border-4 border-gray-300 p-4">
-            <Typography className="text-lg">{loading ? "Loading...": `" ${quote} "`}</Typography>
-            <Typography className="italic text-end text-xs pr-4"> - {author}</Typography>
+            <Typography className="">{loading ? "Loading...": `" ${quote} "`}</Typography>
+            <Typography className="italic text-end text-xs pr-4">{loading? " ": `- ${author}`}</Typography>
             <Button 
             ripple={true} 
-            className="w-2/12 rounded-lg p-2 items-end ml-5" 
+            className="w-2/12 rounded-lg p-2 items-end ml-5 mobile:w-1/2" 
             onClick={getQuote}
             >
                Another One

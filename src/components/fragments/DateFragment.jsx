@@ -13,7 +13,7 @@ const DateFragment = (props) => {
     }
     return(
         <>
-        <div className="font-bebasNeue text-5xl">
+        <div className="font-bebasNeue text-5xl mobile:w-full">
            {formatDate()}
         </div>
         </>

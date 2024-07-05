@@ -1,6 +1,5 @@
 import "../../styleSheets/flipClock.css";
-import { useEffect, useState, useRef } from "react";
-import FlipClockSecondLast from "../fragments/FlipClockSecondLast";
+import { useEffect, useState } from "react";
 import FlipClockFragment from "../fragments/FlipClockFragment";
 
 const FlipClock = (props) =>{
@@ -126,7 +125,7 @@ const FlipClock = (props) =>{
         <div className="">
         {/* <button className={`pr-5 border-2 border-black ${flipped? "turn-black" : " "}`} onClick={test}>Test</button> */}
 
-          <div className="clock align-middle ">
+          <div className="clock align-middle mobile:w-full ">
 
             <FlipClockFragment
             cardName ="hour-first"
