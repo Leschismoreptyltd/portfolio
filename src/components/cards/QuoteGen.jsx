@@ -39,6 +39,8 @@ const QuoteGen = () =>{
 
     return(
         <div className="flex flex-col gap-1 m-3 w-full border-4 border-gray-300 p-4">
+            <Typography variant="h4"
+                className=" w-1/4 font-notoSerifJapanese font-bold border-b-2 border-gray-400 mb-3 mobile:w-full">Grab a Quote...</Typography>
             <Typography className="">{loading ? "Loading...": `" ${quote} "`}</Typography>
             <Typography className="italic text-end text-xs pr-4">{loading? " ": `- ${author}`}</Typography>
             <Button 

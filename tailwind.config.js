@@ -23,7 +23,8 @@ module.exports = withMT({
         dancingScript: ["Dancing Script", "sans-serif"],
         reenieBeanie: ["Reenie Beanie", "sans-serif"],
         mrsSaintDelafield: ["Mrs Saint Delafield", "sans-serif"],
-        specialElite:["Special Elite", "sans-serif"]
+        specialElite:["Special Elite", "sans-serif"],
+        notoSerifJapanese:["Noto Serif JP", "sans-serif"]
         // Add more custom font families as needed
       }
     },
